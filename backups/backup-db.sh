@@ -2,6 +2,7 @@
 # Database Backup Script
 # Originator    : Mirasz
 
+# Global
 DATE=$(date +%Y%m%d%H%M)
 
 # MySQL
@@ -18,4 +19,6 @@ NAME1="$DATE-$DB-routines.sql"
 # Execution
 mysqldump $AUTH $OPT $DB | gzip > $DIR$NAME
 mysqldump $AUTH $OPT $OPT1 $DB > $DIR$NAME1
+
+# Clean Up
 find $DIR -type f -iname '*'$DB'.sql*' -mtime +3 -exec rm {} \;
